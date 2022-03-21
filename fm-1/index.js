@@ -48,17 +48,28 @@ const foodData = [
 /** YOUR CODE BELOW **/
 
 const renderFood = (rootElement, foodData) => {
+
+    rootElement.addEventListener("click", event => {
+      const {target} = event
+      target.remove()
+
+    })
+
+    const fragment =  document.createDocumentFragment()
     foodData.forEach( item => {
         const newItem = createFoodItems(item)
-        rootElement.appendChild(newItem)
+        fragment.appendChild(newItem)
     })
+
+    rootElement.appendChild(fragment)
+
 }
 
 const createFoodItems = (item) => {
   const newItem = document.createElement("p")
-  
+
   newItem.setAttribute('id', `item-${item.id}`)
-  newItem.setAttribute('onClick', `removeItem("item-${item.id}")`)
+  // newItem.setAttribute('onClick', `removeItem("item-${item.id}")`)
   newItem.innerHTML = `${item.name} - ${item.image}`
 
   return newItem
@@ -69,4 +80,3 @@ const removeItem = (id) => {
 }
 
 renderFood(rootElement, foodData)
-
