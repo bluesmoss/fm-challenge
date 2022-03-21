@@ -46,3 +46,27 @@ const foodData = [
 
 
 /** YOUR CODE BELOW **/
+
+const renderFood = (rootElement, foodData) => {
+    foodData.forEach( item => {
+        const newItem = createFoodItems(item)
+        rootElement.appendChild(newItem)
+    })
+}
+
+const createFoodItems = (item) => {
+  const newItem = document.createElement("p")
+  
+  newItem.setAttribute('id', `item-${item.id}`)
+  newItem.setAttribute('onClick', `removeItem("item-${item.id}")`)
+  newItem.innerHTML = `${item.name} - ${item.image}`
+
+  return newItem
+}
+
+const removeItem = (id) => {
+  document.getElementById(id).remove()
+}
+
+renderFood(rootElement, foodData)
+
